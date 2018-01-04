@@ -1,4 +1,4 @@
-package amudhan.publisher;
+package publisher;
 
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.Connection;
@@ -6,6 +6,7 @@ import com.rabbitmq.client.Channel;
 import java.time.*;
 
 public class Send{
+	
 	private final static String QUEUE_NAME = "hello";
 
 	public static void main(String[] args) throws Exception {
