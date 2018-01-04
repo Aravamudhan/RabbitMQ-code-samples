@@ -18,7 +18,7 @@ This repository contains code samples from [RabbitMQ's](https://www.rabbitmq.com
 * To start the sender ``` java -classpath "../lib/*:." publisher.Send ```
 * To start the receiver ```java -classpath "../lib/*:." receiver.Receive ```
 2. [Distributing tasks among various workers](https://github.com/Aravamudhan/RabbitMQ-code-samples/tree/master/workqueues)
-* Open 3 tabs and navigate to the workqueues folders
+* Open 3 tabs and navigate to the workqueues folder
 * In tab 1 compile the sender/task provider/NewTask ```javac -classpath "../lib/*:." sender/NewTask.java```
 * In tab 2 compile the receiver/Worker ```javac -classpath "../lib/*:." receiver/Worker.java```
 * Start the NewTask provider ```java -classpath "../lib/*:." sender.NewTask``` and start giving tasks
@@ -37,3 +37,18 @@ This repository contains code samples from [RabbitMQ's](https://www.rabbitmq.com
 * Start another log receiver to receive messages in a file named rabbitmq_logs.log 
 ```java -classpath "../lib/*:." receive.ReceiveLogs > rabbitmq_logs.log```
 * Now what ever message we type in the log emitter console will be received in the console as well as in the log file
+4. [Routing](https://github.com/Aravamudhan/RabbitMQ-code-samples/tree/master/routing)
+* When using BuiltinExchangeType.FANOUT, messages are transferred from the exchange to any queue that binds itself with that exchange.
+* When using BuiltinExchangeType.DIRECT, messages are transferred from the exchange to queue with the same routing key as this exchange.
+* This type of behavior, sending the messages to multiple sources based on the routing key, can be used, for example, in logging the server log messages based on the severity
+* Go to the routing folder
+* Compile the log creator ```javac -classpath "../lib/*:." publish/EmitLogsByRouting.java```
+* Compile the log consumer ```javac -classpath "../lib/*:." subscribe/ReceiveLogsByRouting.java```
+* Start a consumer ```java -classpath "../lib/*:." subscribe.ReceiveLogsByRouting trace``` that can receive the logs messages with "trace" level
+* This consumer will consume any message with the routing key "trace"
+* Start another consumer ```java -classpath "../lib/*:." subscribe.ReceiveLogsByRouting info error``` with log levels info and error
+* This consumer will consume any message with the routing keys "info" and "error"
+* Start the log emitter ```java -classpath "../lib/*:." publish.EmitLogsByRouting```
+* Enter the message and then when the program asks, the log level
+* The messages will be delegated to the queues(in our case terminal windows) with matching (routing keys)log levels
+

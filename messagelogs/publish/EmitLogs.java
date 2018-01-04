@@ -17,6 +17,7 @@ public class EmitLogs{
 		factory.setHost("localhost");
 		Connection connection = factory.newConnection();
 		Channel channel = connection.createChannel();
+		// The FANOUT exchange type, transfer the messages from the exchange to all the queues that are bound to this exchange
 		channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.FANOUT);
 		// Boiler plate ends
 		Scanner input = new Scanner(System.in);
