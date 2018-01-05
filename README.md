@@ -51,4 +51,15 @@ This repository contains code samples from [RabbitMQ's](https://www.rabbitmq.com
 * Start the log emitter ```java -classpath "../lib/*:." publish.EmitLogsByRouting```
 * Enter the message and then when the program asks, the log level
 * The messages will be delegated to the queues(in our case terminal windows) with matching (routing keys)log levels
-
+5. [Topics](https://github.com/Aravamudhan/RabbitMQ-code-samples/tree/master/topics)
+* When using the BuiltinExchangeType.DIRECT, messages are transferred to the matching queues with a routing key. What if we have multiple routing keys ? BuiltinExchangeType.TOPIC solves this problem.
+* The routing key in TOPIC exchange is not a single word but multiple words separated by .(dot) or #.
+* ```KEY1.*``` in a queue binding can receive messages from an exchange that contains ```KEY1.SOME_WORD``` as a routing key.
+* ```#``` queue receives all the messages.
+* Go to the topics folder
+* Compile the log emitter ```javac -classpath "../lib/*:." publish/EmitByTopics.java```
+* Compile the log receiver ```javac -classpath "../lib/*:." subscribe/ReceiveByTopics.java```
+* Start the log emitter ```java -classpath "../lib/*:." publish.EmitByTopics```
+* In another terminal/terminals start one/multiple log receivers ```java -classpath "../lib/*:." subscribe.ReceiveByTopics "#"``` - Receives all the messages
+* ```java -classpath "../lib/*:." subscribe.ReceiveByTopics "critical.#"``` - Receives messages that start with critical and has zero or more words
+* This method of exchange is useful when one wants to receive messages in a specific routing key format instead of simply receiving all messages formats with a particular routing key.

@@ -4,6 +4,9 @@ import com.rabbitmq.client.*;
 import java.util.*;
 import java.util.stream.*;
 
+/**
+* Send messages to exchange based on the routing key
+**/
 public class EmitLogsByRouting{
 
 	private static final String EXCHANGE_NAME = "direct_logs";
