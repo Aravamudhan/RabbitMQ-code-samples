@@ -17,6 +17,7 @@ This repository contains code samples from [RabbitMQ's](https://www.rabbitmq.com
 * Here the "lib" folder which contains the library files of RabbitMQ and current foler "."(dot) are added to the classpath
 * To start the sender ``` java -classpath "../lib/*:." publisher.Send ```
 * To start the receiver ```java -classpath "../lib/*:." receiver.Receive ```
+* For windows instead of using the color(:) use semi-colon on the class path ```javac -cp "../lib/*;." publisher\Send.java```
 2. [Distributing tasks among various workers](https://github.com/Aravamudhan/RabbitMQ-code-samples/tree/master/workqueues)
 * Open 3 tabs and navigate to the workqueues folder
 * In tab 1 compile the sender/task provider/NewTask ```javac -classpath "../lib/*:." sender/NewTask.java```
